@@ -1,4 +1,5 @@
 'use strict'
+const { user } = require('pg/lib/defaults')
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
@@ -16,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       User.hasMany(models.DirectMessage, { foreignKey: 'from' })
       User.hasMany(models.Community, { foreignKey: 'creatorId' })
       User.hasMany(models.Discussion, { foreignKey: 'posterId' })
+      User.hasMany(models.UpvoteComment, { foreignKey: 'userId' })
     }
   }
   User.init(
