@@ -1,0 +1,24 @@
+{
+  "name": "unicorn-backend-postgresql",
+  "version": "1.0.0",
+  "description": "Mental Health and Grief App in loving memory of my best friend and the unicorn princess, Titilayomi Yomi-Badejo (1993 - 2020)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cchinw/unicorn-backend-postgresql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cchinw/unicorn-backend-postgresql/issues"
+  },
+  "homepage": "https://github.com/cchinw/unicorn-backend-postgresql#readme",
+  "dependencies": {
+    "pg": "^8.7.3",
+    "sequelize": "^6.19.0"
+  }
+}
