@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Community, { foreignKey: 'communityId' })
       User.belongsTo(models.Discussion, { foreignKey: 'discussionId' })
+      User.belongsTo(models.GriefStage, { foreignKey: 'griefStageId' })
       User.hasMany(models.Comment, { foreignKey: 'userId' })
       User.hasMany(models.DirectMessage, { foreignKey: 'to' })
       User.hasMany(models.DirectMessage, { foreignKey: 'from' })
@@ -53,6 +54,14 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: 'CASCADE',
         references: {
           model: 'discussions',
+          key: 'id'
+        }
+      },
+      griefStageId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'griefstages',
           key: 'id'
         }
       },

@@ -36,6 +36,14 @@ module.exports = {
           key: 'id'
         }
       },
+      griefStageId: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'griefstages',
+          key: 'id'
+        }
+      },
       image: {
         type: Sequelize.TEXT
       },

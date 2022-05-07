@@ -13,6 +13,18 @@ const GetUserByCommunity = async (req, res) => {
   }
 }
 
+const GetUserByGriefStage = async (req, res) => {
+  try {
+    let griefStageId = parseInt(req.params.grief_stage_id)
+    const users = await User.findAll({
+      where: { griefStageId: griefStageId }
+    })
+    res.send(users)
+  } catch (error) {
+    throw error
+  }
+}
+
 const GetAllUsers = async (req, res) => {
   try {
     const users = await User.findAll()
@@ -51,6 +63,7 @@ const GetUserById = async (req, res) => {
 
 module.exports = {
   GetUserByCommunity,
+  GetUserByGriefStage,
   GetAllUsers,
   UpdatedUser,
   GetUserById
