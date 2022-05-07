@@ -23,7 +23,7 @@ module.exports = {
           key: 'id'
         }
       },
-      commenterId: {
+      userId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {

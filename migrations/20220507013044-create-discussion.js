@@ -19,7 +19,7 @@ module.exports = {
       upvotes: {
         type: Sequelize.INTEGER
       },
-      commenterId: {
+      posterId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {

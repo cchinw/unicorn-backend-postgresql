@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Discussion.hasMany(models.User, { foreignKey: 'discussionId' })
       Discussion.belongsTo(models.Community, { foreignKey: 'communityId' })
-      Discussion.hasMany(models.Comment, { foreignKey: 'commentId' })
-      Discussion.belongsTo(models.User, { foreignKey: 'commenterId' })
+      Discussion.hasMany(models.Comment, { foreignKey: 'discussionId' })
+      Discussion.belongsTo(models.User, { foreignKey: 'posterId' })
     }
   }
   Discussion.init(
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       },
       upvotes: DataTypes.INTEGER,
-      commenterId: {
+      posterId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
