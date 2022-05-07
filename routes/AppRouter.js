@@ -1,0 +1,22 @@
+const Router = require('express').Router()
+const AuthRouter = require('./AuthRouter')
+const UserRouter = require('./UserRouter')
+const GriefStageRouter = require('./GriefStageRouter')
+const CommunityRouter = require('./CommunityRouter')
+const CommentRouter = require('./CommentRouter')
+const DirectMessageRouter = require('./DirectMessageRouter')
+const Discussion = require('./Discussion')
+const ResourceRouter = require('./ResourceRouter')
+const GriefImageRouter = require('./GriefImageRouter')
+
+Router.use('/auth', AuthRouter)
+Router.use('/user', UserRouter)
+Router.use('/griefstage', GriefStageRouter)
+Router.use('/community', CommunityRouter)
+Router.use('/comment', CommentRouter)
+Router.use('/directmessage', DirectMessageRouter)
+Router.use('/rating', ResourceRouter)
+Router.use('/griefimage', GriefImageRouter)
+Router.use('/discussion', Discussion)
+
+module.exports = Router
