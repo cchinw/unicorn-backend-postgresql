@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "unicorn",
+    "database": "unicorn_backend",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

@@ -28,14 +28,6 @@ module.exports = {
       bio: {
         type: Sequelize.TEXT
       },
-      communityId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'communities',
-          key: 'id'
-        }
-      },
       griefStageId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
@@ -59,5 +51,6 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('users')
+    await queryInterface.dropTable('discussions')
   }
 }

@@ -1,7 +1,7 @@
 'use strict'
 const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
-  class Comment extends Model {
+  class UserCommunity extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -9,39 +9,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Comment.belongsTo(models.User, { foreignKey: 'userId' })
-      Comment.belongsTo(models.Discussion, { foreignKey: 'discussionId' })
-      Comment.hasMany(models.UpvoteComment, { foreignKey: 'commentVote' })
     }
   }
-  Comment.init(
+  UserCommunity.init(
     {
-      comment: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-      discussionId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'discussions',
-          key: 'id'
-        }
-      },
-      userId: {
+      creatorId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
           model: 'users',
           key: 'id'
         }
+      },
+      communityId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'communities',
+          key: 'id'
+        }
       }
     },
     {
       sequelize,
-      modelName: 'Comment',
-      tableName: 'comments'
+      modelName: 'UserCommunity',
+      tablename: 'usercommunities'
     }
   )
-  return Comment
+  return UserCommunity
 }

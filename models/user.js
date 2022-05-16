@@ -10,15 +10,18 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsTo(models.Community, { foreignKey: 'communityId' })
-      User.belongsTo(models.Discussion, { foreignKey: 'discussionId' })
+      User.belongsToMany(models.Community, {
+        as: 'user_community',
+        through: models.UserCommunity,
+        foreignKey: 'communityId'
+      })
+      User.hasMany(models.Community, { as: 'creator', foreignKey: 'creatorId' })
+      User.hasMany(models.Discussion, { foreignKey: 'posterId' })
       User.belongsTo(models.GriefStage, { foreignKey: 'griefStageId' })
       User.hasMany(models.Comment, { foreignKey: 'userId' })
+      User.hasMany(models.UpvoteComment, { foreignKey: 'userId' })
       User.hasMany(models.DirectMessage, { foreignKey: 'to' })
       User.hasMany(models.DirectMessage, { foreignKey: 'from' })
-      User.hasMany(models.Community, { foreignKey: 'creatorId' })
-      User.hasMany(models.Discussion, { foreignKey: 'posterId' })
-      User.hasMany(models.UpvoteComment, { foreignKey: 'userId' })
     }
   }
   User.init(
@@ -40,23 +43,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      bio: DataTypes.TEXT,
-      communityId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'communities',
-          key: 'id'
-        }
-      },
-      discussionId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'discussions',
-          key: 'id'
-        }
-      },
+      bio: { type: DataTypes.TEXT },
       griefStageId: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',

@@ -1,30 +1,14 @@
 'use strict'
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('discussions', {
+    await queryInterface.createTable('usercommunities', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      topic: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      content: {
-        type: Sequelize.TEXT,
-        allowNull: false
-      },
-      posterId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
-      users: {
+      creatorId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
@@ -51,6 +35,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('discussions')
+    await queryInterface.dropTable('usercommunities')
   }
 }

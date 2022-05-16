@@ -9,42 +9,29 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Community.belongsTo(models.User, { foreignKey: 'creatorId' })
-      Community.belongsTo(models.GriefStage, { foreignKey: 'griefStageId' })
-      Community.hasMany(models.Discussion, { foreignKey: 'communityId' })
       Community.hasMany(models.User, { foreignKey: 'communityId' })
+      Community.hasMany(models.Discussion, { foreignKey: 'communityId' })
+      Community.belongsToMany(models.User, {
+        as: 'community_creator',
+        through: models.UserCommunity,
+        foreignKey: 'creatorId'
+      })
     }
   }
   Community.init(
     {
-      category: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false
       },
-      image: {
+      banner: {
         type: DataTypes.TEXT,
         allowNull: false
       },
       description: DataTypes.TEXT,
-      creatorId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       population: {
         type: DataTypes.INTEGER,
         allowNull: false
-      },
-      griefStageId: {
-        type: DataTypes.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'griefstages',
-          key: 'id'
-        }
       }
     },
     {

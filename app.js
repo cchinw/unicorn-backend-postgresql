@@ -15,9 +15,6 @@ app.use(cors())
 // app.use(logger('dev'))
 app.use(express.json())
 
-// app.use('/auth', AuthRouter)
-// app.use('/pilgrim', PilgrimRouter)
-
 app.get('/', (req, res) => res.json({ message: 'Server Works' }))
 app.use('/api', AppRouter)
 app.listen(PORT, () => console.log(`Server Running On Port: ${PORT}`))

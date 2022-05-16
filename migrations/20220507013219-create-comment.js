@@ -12,9 +12,6 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
-      upvotes: {
-        type: Sequelize.INTEGER
-      },
       discussionId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',

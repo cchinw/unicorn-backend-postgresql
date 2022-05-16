@@ -8,39 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      category: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      image: {
+      banner: {
         type: Sequelize.STRING,
         allowNull: false
       },
       description: {
         type: Sequelize.TEXT
       },
-      userId: {
-        type: Sequelize.INTEGER
-      },
-      creatorId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-      },
       population: {
         type: Sequelize.INTEGER,
         allowNull: false
-      },
-      griefStageId: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'griefstages',
-          key: 'id'
-        }
       },
       createdAt: {
         allowNull: false,

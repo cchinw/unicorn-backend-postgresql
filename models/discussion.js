@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Discussion.hasMany(models.User, { foreignKey: 'discussionId' })
       Discussion.belongsTo(models.Community, { foreignKey: 'communityId' })
       Discussion.hasMany(models.Comment, { foreignKey: 'discussionId' })
       Discussion.belongsTo(models.User, { foreignKey: 'posterId' })
+      Discussion.belongsTo(models.User, { foreignKey: 'users' })
     }
   }
   Discussion.init(
@@ -25,8 +25,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false
       },
-      upvotes: DataTypes.INTEGER,
       posterId: {
+        type: DataTypes.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'users',
+          key: 'id'
+        }
+      },
+      users: {
         type: DataTypes.INTEGER,
         onDelete: 'CASCADE',
         references: {
